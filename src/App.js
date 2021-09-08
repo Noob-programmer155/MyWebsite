@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {gsap} from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import Background from './component/background';
+import Section1 from './component/section1';
+import Section2 from './component/section2';
+import Section3 from './component/section3';
+import Section4 from './component/section4';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Background/>
+      <Section1/>
+      <Section2/>
+      <Section3/>
+      <Section4/>
+    </>
   );
 }
 
