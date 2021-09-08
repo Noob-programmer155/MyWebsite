@@ -238,8 +238,8 @@ export default function Section4() {
           )
         }
         <Backdrop className={style.backdrop} open={Boolean(open)}>
-          <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-            <Box display='flex' border={6} borderColor='#bfbfbf' style={{background:'#ffff', width:'50vw', height:'45vh', minWidth:'280px'}}>
+          <Box>
+            <Box display='flex' border={6} borderColor='#bfbfbf' style={{background:'#ffff', width:'90vw', height:'45vh', minWidth:'280px', maxWidth:'600px'}}>
               <CardMedia image={(open)? project[parseInt(open-1)].image:null} style={{minWidth:'30%', height:'inherit'}}/>
               <Box style={{marginLeft:'5px'}}>
                 <Typography className={style.readMainTitle}>
@@ -261,7 +261,9 @@ export default function Section4() {
                 </Card>
               </Box>
             </Box>
-            <IconButton style={{background:'#3399ff',color:'#ffff',position:'relative',top:'-25px'}} onClick={a => setOpen(null)}><CloseIcon/></IconButton>
+            <Box justifyContent='center' display='flex'>
+              <IconButton style={{background:'#3399ff',color:'#ffff',position:'relative',top:'-25px'}} onClick={a => setOpen(null)}><CloseIcon/></IconButton>
+            </Box>
           </Box>
         </Backdrop>
       </Box>
