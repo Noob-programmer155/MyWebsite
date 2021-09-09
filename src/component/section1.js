@@ -147,8 +147,8 @@ const useStyle = makeStyles((theme) => ({
 export default function Section1() {
   var style = useStyle();
   React.useEffect(()=>{
-    gsap.from("#mainsec1",{scrollTrigger:{
-      trigger:'#mainsec1',
+    gsap.from("#about12",{scrollTrigger:{
+      trigger:'#about12',
       start:'top center',
       scrub:0,
     },opacity:0, y:100, ease:'power4'});
@@ -171,7 +171,7 @@ export default function Section1() {
   },[])
   return(
     <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-      <Typography id='mainsec1' variant='h4' style={{width:'100%', textAlign:'center', marginTop:'200px'}}>
+      <Typography id='about12' variant='h4' style={{width:'100%', textAlign:'center', marginTop:'200px'}}>
         <span className={style.titleSec}>About Me</span>
       </Typography>
       <Box justifyContent='center' alignItems='center' display='flex' style={{maxWidth:'1000px', width:'90%', marginTop:'40px'}}>

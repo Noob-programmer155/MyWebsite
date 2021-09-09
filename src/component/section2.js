@@ -164,7 +164,7 @@ export default function Section2() {
     jh1.from('#subsec24',{opacity:0, x:100, ease:'power4'});
   },[])
   return(
-    <Box className={style.root}>
+    <Box id='experience12' className={style.root}>
       <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap' style={{width:'50%', minWidth:'300px'}}>
         <Typography id='mainsec2' className={style.title}>
           Experience

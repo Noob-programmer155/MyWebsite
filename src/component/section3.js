@@ -109,7 +109,7 @@ export default function Section3() {
     });
   },[])
   return(
-    <Card square>
+    <Card id='skill12' square>
       <CardMedia image={gbr}>
         <Box className={style.card}>
           <Typography className={style.title}>

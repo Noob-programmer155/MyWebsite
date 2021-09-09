@@ -59,8 +59,10 @@ const useStyle = makeStyles((th)=> ({
     background: fade('#000000', 0),
     opacity:1,
     display:'flex',
-    width:'inherit',
-    height:'inherit',
+    width:'20vw',
+    minWidth:'140px',
+    minHeight:'140px',
+    height:'20vw',
     transition: th.transitions.create('background', {duration:'0.7s', easing: th.transitions.easing.easeOut}),
     [th.breakpoints.up(1000)]:{
       opacity:0,
@@ -186,7 +188,7 @@ export default function Section4() {
   ]
 
   return(
-    <Box>
+    <Box id='project12'>
       <Typography className={style.title}>
         My Projects
       </Typography>
