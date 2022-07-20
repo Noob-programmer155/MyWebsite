@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import gbr from '../ilya-pavlov-OqtafYT5kTw-unsplash.jpg';
+import gbr from '../images/ilya-pavlov-OqtafYT5kTw-unsplash.jpg';
 import {Card, CardMedia, Typography, Box} from '@material-ui/core';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import gsap from 'gsap';
@@ -104,7 +104,7 @@ function Progress(props) {
 export default function Section3() {
   var style = useStyle();
   useEffect(()=>{
-    ['#java1','#react1','#spring1','#mysql1','#oracle1','#css1','#jsp1','#mongo1','#firebase1','#gcp1'].map(a => {
+    ['#java1','#react1','#spring1','#mysql1','#oracle1','#css1','#javascript1','#gcp1'].map(a => {
       gsap.from(a, {scrollTrigger:{trigger:a,start:'top bottom',scrub:0}, width:0, ease:'power4'});
     });
   },[])
@@ -119,19 +119,17 @@ export default function Section3() {
             <Box alignItems='flex-start' justifyContent='center' display='flex' style={{width:'50%', minWidth:'300px'}}>
               <Box style={{width:'90%', minWidth:'300px'}}>
                 <Progress id='java1' value={95} title='Java'/>
-                <Progress id='react1' value={83} title='React Js'/>
-                <Progress id='spring1' value={60} title='Spring Framework(Springboot, Spring Cloud, etc)'/>
-                <Progress id='mysql1' value={88} title='MySql'/>
-                <Progress id='oracle1' value={88} title='Oracle'/>
+                <Progress id='react1' value={85} title='React Js'/>
+                <Progress id='spring1' value={70} title='Spring Framework(Springboot, Spring Cloud, etc)'/>
+                <Progress id='mysql1' value={90} title='MySql'/>
               </Box>
             </Box>
             <Box alignItems='flex-start' justifyContent='center' display='flex' style={{width:'50%', minWidth:'300px'}}>
               <Box style={{width:'90%', minWidth:'300px'}}>
-                <Progress id='css1' value={80} title='CSS'/>
-                <Progress id='jsp1' value={75} title='JSP(Java Server Page)'/>
-                <Progress id='mongo1' value={25} title='Mongo Db'/>
-                <Progress id='firebase1' value={45} title='Firebase'/>
-                <Progress id='gcp1' value={40} title='GCP'/>
+                <Progress id='css1' value={90} title='CSS'/>
+                <Progress id='javascript1' value={90} title='Javascript'/>
+                <Progress id='gcp1' value={70} title='Cloud Computing'/>
+                <Progress id='oracle1' value={90} title='Oracle'/>
               </Box>
             </Box>
           </Box>

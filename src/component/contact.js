@@ -60,48 +60,32 @@ var useStyle = makeStyles((theme)=>({
   },
 }))
 
+const data = [
+  {title:'Email',link:'mailto:amrrrr572@gmail.com',label:'amrrrr572@gmail.com',icon:<EmailIcon/>},
+  {title:'Facebook',link:'https://facebook.com/amar.rijal.336',label:'Amar Rijal',icon:<FacebookIcon/>},
+  {title:'Github',link:'https://github.com/Noob-programmer155',label:'Noob-programmer155',icon:<GitHubIcon/>},
+  {title:'LinkedIn',link:'https://www.linkedin.com/in/arrijal-amar-735b71206',label:'Arrijal Amar',icon:<LinkedInIcon/>}
+]
+
 export default function Contact() {
   const style = useStyle();
   return(
     <Paper id='contact12' square style={{background:'#00004d',paddingTop:'50px', marginTop:'50px'}}>
       <Box>
         <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-          <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-            <IconButton className={style.root} component='a' rel='noreferrer' href="mailto:amrrrr572@gmail.com"><EmailIcon/></IconButton>
-            <Typography className={style.main}>
-              Email
-            </Typography>
-            <Typography className={style.submain}>
-              amrrrr572@gmail.com
-            </Typography>
-          </Box>
-          <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-            <IconButton className={style.root} component='a' href="https://facebook.com/amar.rijal.336" rel='noreferrer' target="_blank"><FacebookIcon/></IconButton>
-            <Typography className={style.main}>
-              Facebook
-            </Typography>
-            <Typography className={style.submain}>
-              Amar Rijal
-            </Typography>
-          </Box>
-          <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-            <IconButton className={style.root} component='a' href="https://github.com/Noob-programmer155" rel='noreferrer' target="_blank"><GitHubIcon/></IconButton>
-            <Typography className={style.main}>
-              Github
-            </Typography>
-            <Typography className={style.submain}>
-              Noob-programmer155
-            </Typography>
-          </Box>
-          <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-            <IconButton className={style.root} component='a' href="https://www.linkedin.com/in/arrijal-amar-735b71206" rel='noreferrer' target="_blank"><LinkedInIcon/></IconButton>
-            <Typography className={style.main}>
-              LinkedIn
-            </Typography>
-            <Typography className={style.submain}>
-              Arrijal Amar
-            </Typography>
-          </Box>
+          {
+            data.map((item,i) => (
+              <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
+                <IconButton className={style.root} component='a' rel='noreferrer' href={item.link}>{item.icon}</IconButton>
+                <Typography className={style.main}>
+                  {item.title}
+                </Typography>
+                <Typography className={style.submain}>
+                  {item.label}
+                </Typography>
+              </Box>
+            ))
+          }
         </Box>
         <Box>
           <Typography className={style.copyright}>

@@ -1,10 +1,11 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Box, Typography,Avatar, Card, CardMedia, CardContent, Grid} from '@material-ui/core';
-import dev from '../Dev.jpeg';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import gbr1 from '../gambar1.jpg';
+import dev from '../images/Dev.jpeg';
+import gbr1 from '../images/gambar1.jpg';
+import {data} from './data/data';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -221,7 +222,7 @@ export default function Section1() {
               <Grid container>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    3
+                    {data.filter(i => i.label === 'java').length}
                   </Typography>
                   <Typography className={style.projTitSecDes}>
                     Java Projects
@@ -229,7 +230,7 @@ export default function Section1() {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    1
+                    {data.filter(i => i.label === 'react').length}
                   </Typography>
                   <Typography className={style.projTitSecDes}>
                     React Projects
@@ -237,10 +238,10 @@ export default function Section1() {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    3
+                    {data.filter(i => i.label !== 'react' && i.label !== 'java').length}
                   </Typography>
                   <Typography className={style.projTitSecDes}>
-                    Web Projects
+                    Other Projects
                   </Typography>
                 </Grid>
               </Grid>

@@ -6,6 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ClipboardJS from "clipboard";
+import {data} from './data/data';
 
 new ClipboardJS(".copy");
 gsap.registerPlugin(ScrollTrigger);
@@ -150,43 +151,6 @@ export default function Section4() {
     setTab(newVal);
   }
 
-  var project = [
-    {
-      id:1,
-      nama:'Slicing Image',
-      descript:"This is my first Java project, this project 100% full java code and it used \
-                to divide the image into many with full settings\(width and height\) without loosing quality",
-      link:'https://github.com/Noob-programmer155/Slicing-Image',
-      image: require('../proj1.jpg').default,
-      index:[0,1],
-    },
-    {
-      id:2,
-      nama:'Default Store Rest API',
-      descript:"This is my fourth Java project with Springboot, this \
-                project descript default Rest API that must have in store",
-      link:'https://github.com/Noob-programmer155/Default-Store-Rest-API',
-      image: require('../proj2.jpg').default,
-      index:[0,1,3],
-    },
-    {
-      id:3,
-      nama:'Rest API with JPA ORACLE, JWT, X509 basic authentication',
-      descript:'This is my fifth Java project with Springboot & Spring Security, this project is descript of how to implement Springboot with Spring Security token basic & certified auth in server',
-      link:'https://github.com/Noob-programmer155/Rest-API-with-JPA-ORACLE-JWT-X509-basic-authentication',
-      image: require('../proj3.jpg').default,
-      index:[0,1,3],
-    },
-    {
-      id:4,
-      nama:'My Website',
-      descript:'This is my six Project in React js, with fully customized with Github & Firebase',
-      link:'this website',
-      image: require('../proj4.jpg').default,
-      index:[0,2,3],
-    },
-  ]
-
   return(
     <Box id='project12'>
       <Typography className={style.title}>
@@ -203,52 +167,47 @@ export default function Section4() {
             <Tab label='All' {...controller(0)}/>
             <Tab label='Java' {...controller(1)}/>
             <Tab label='React' {...controller(2)}/>
-            <Tab label='Web' {...controller(3)}/>
+            <Tab label='Other Projects' {...controller(3)}/>
           </Tabs>
         </Box>
         <Divider variant='middle' style={{width:'100%'}}/>
         {
-          [0,1,2,3].map( c => (
-              <TabPanel value={tab} index={c}>
-                <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'100%'}}>
-                  <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'90%', minWidth:'140px'}}>
-                  {
-                    project.map( a => {
-                      if (a.index.includes(c)) {
-                        return (
-                          <Box style={{margin: '10px'}}>
-                            <CardActionArea className={style.readHover} onClick={v => {setOpen(a.id);}}>
-                              <CardMedia
-                                image={a.image}
-                                className={style.cardImg}
-                                >
-                                  <Box justifyContent='center' alignItems='center' className={style.readBox}>
-                                    <Typography className={style.read}>
-                                      Read More
-                                    </Typography>
-                                  </Box>
-                              </CardMedia>
-                            </CardActionArea>
-                          </Box>
-                        )
-                    }})
-                  }
-                  </Box>
+          [0,1,2,3].map(c => (
+            <TabPanel value={tab} index={c}>
+              <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'100%'}}>
+                <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'90%', minWidth:'140px'}}>
+                {
+                  data.filter(e => e.index.includes(c)).map((item,i) => (
+                    <Box key={i} style={{margin: '10px'}}>
+                      <CardActionArea className={style.readHover} onClick={v => {setOpen(item.id);}}>
+                        <CardMedia
+                          image={item.image}
+                          className={style.cardImg}>
+                            <Box justifyContent='center' alignItems='center' className={style.readBox}>
+                              <Typography className={style.read}>
+                                Read More
+                              </Typography>
+                            </Box>
+                        </CardMedia>
+                      </CardActionArea>
+                    </Box>
+                  ))
+                }
                 </Box>
-              </TabPanel>
-            )
-          )
+              </Box>
+            </TabPanel>
+          ))
         }
         <Backdrop className={style.backdrop} open={Boolean(open)}>
           <Box>
             <Box display='flex' border={6} borderColor='#bfbfbf' style={{background:'#ffff', width:'90vw', height:'45vh', minWidth:'280px', maxWidth:'600px'}}>
-              <CardMedia image={(open)? project[parseInt(open-1)].image:null} style={{minWidth:'30%', height:'inherit'}}/>
+              <CardMedia image={(open)? data[parseInt(open-1)].image:null} style={{minWidth:'30%', height:'inherit'}}/>
               <Box style={{marginLeft:'5px'}}>
                 <Typography className={style.readMainTitle}>
-                  {(open)? project[parseInt(open-1)].nama:null}
+                  {(open)? data[parseInt(open-1)].nama:null}
                 </Typography>
                 <Typography className={style.readMain}>
-                  {(open)? project[parseInt(open-1)].descript:null}
+                  {(open)? data[parseInt(open-1)].descript:null}
                 </Typography>
                 <Card className='copy' style={{display:'flex',marginRight:'15px', marginLeft:'15px'}} data-clipboard-action="copy" data-clipboard-target="#linkProj">
                   <Box display='flex' alignItems='center' style={{padding:'4px', paddingRight:'6px', background:'#f2f2f2'}}>
@@ -258,7 +217,7 @@ export default function Section4() {
                   <InputBase
                     id='linkProj'
                     style={{width:'100%', marginLeft:'5px'}}
-                    value={(open)? project[parseInt(open-1)].link:null}
+                    value={(open)? data[parseInt(open-1)].link:null}
                    />
                 </Card>
               </Box>

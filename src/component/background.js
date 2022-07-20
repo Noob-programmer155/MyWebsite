@@ -11,8 +11,8 @@ import EventIcon from '@material-ui/icons/Event';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import { scroller } from "react-scroll";
 import gsap from 'gsap';
-import gbr from '../Amar.jpg';
-import img from '../back.jpg';
+import gbr from '../images/Amar.jpg';
+import img from '../images/back.jpg';
 
 const useStyle = makeStyles((theme)=>({
   root:{
@@ -61,6 +61,9 @@ const useStyle = makeStyles((theme)=>({
     marginTop:'60px',
     width:'40vw',
     height:'40vw',
+    imgProps: {
+      objectPosition:'0px 0px',
+    },
     zIndex:'2',
     [theme.breakpoints.up(500)]:{
       width:'25vw',

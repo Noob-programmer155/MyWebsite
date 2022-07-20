@@ -108,14 +108,14 @@ const useStyle = makeStyles((theme)=>({
 }))
 
 function ProgressCircle(props) {
-  const {id, reverse, position, desc, faculty, tahun, ...other} = props;
+  const {reverse, position, desc, faculty, tahun, ...other} = props;
   var style = useStyle();
   return(
     <Grid container style={{display:'flex', alignItems:'center', flexDirection:(reverse)? 'row-reverse':'row'}}>
       <Grid item xs={6}/>
       <Grid item xs={6}>
-        <Box id={id} borderLeft={(reverse)? 0:5} borderRight={(reverse)? 5:0} display='flex' alignItems='flex-start' style={{position:'relative',
-          left:(reverse)? '5px':'0px', right:(reverse)? '0px':'5px', flexDirection:(reverse)? 'row-reverse':'row', borderColor:'#ff6600'}}>
+        <Box borderLeft={(reverse)? 0:5} borderRight={(reverse)? 5:0} display='flex' alignItems='flex-start' style={{position:'relative',
+          left:(reverse)? '5px':'0px', right:(reverse)? '0px':'5px', flexDirection:(reverse)? 'row-reverse':'row', borderColor:'#ff6600'}} {...other}>
           <Box style={{marginLeft:'8px',marginRight:'8px'}}>
             <Box borderRadius='50%' border={4} className={style.circle}/>
             <Box borderRadius='50%' className={style.circle2}/>
@@ -145,38 +145,28 @@ export default function Section2() {
   useEffect(()=>{
     var jh = gsap.timeline({
       scrollTrigger:{
-        trigger:'#mainsec2',
+        trigger:'.mainsec',
         start:'center bottom',
         scrub:1
       }
     });
-    var jh1 = gsap.timeline({
-      scrollTrigger:{
-        trigger:'#subsec22',
-        start:'center bottom',
-        scrub:1
-      }
-    });
-    jh.from('#mainsec2',{opacity:0, y:100, ease:'power4'});
-    jh.from('#subsec21',{opacity:0, x:-100, ease:'power4'});
-    jh1.from('#subsec22',{opacity:0, y:100, ease:'power4'});
-    jh1.from('#subsec23',{opacity:0, x:-100, ease:'power4'});
-    jh1.from('#subsec24',{opacity:0, x:100, ease:'power4'});
+    jh.from('.mainsec',{opacity:0, y:100, ease:'power4'});
+    jh.from('.subsec',{opacity:0, x:-100, ease:'power4'});
+    jh.from('.subsec2',{opacity:0, x:100, ease:'power4'});
   },[])
   return(
     <Box id='experience12' className={style.root}>
       <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap' style={{width:'50%', minWidth:'300px'}}>
-        <Typography id='mainsec2' className={style.title}>
+        <Typography className={'mainsec '+style.title}>
           Experience
         </Typography>
-        <ProgressCircle id='subsec21' reverse={false} desc='No current Experience'/>
+        <ProgressCircle className='subsec' reverse={false} desc='No current Experience'/>
       </Box>
       <Box style={{width:'50%',minWidth:'300px'}}>
-        <Typography id='subsec22' className={style.title}>
+        <Typography className={'mainsec '+style.title}>
           Education
         </Typography>
-        <ProgressCircle id='subsec23' reverse={false} desc='Study in University of Muhammadiyah Surakarta' tahun='2019 - Now' faculty='faculty of informatics engineering'/>
-        <ProgressCircle id='subsec24' reverse={true} desc='Study in Senior High School of 01 Kartasura' tahun='2017' faculty='Science Major'/>
+        <ProgressCircle className='subsec' reverse={false} desc='Study in University of Muhammadiyah Surakarta' tahun='2019 - Now' faculty='faculty of informatics engineering'/>
       </Box>
     </Box>
   );
