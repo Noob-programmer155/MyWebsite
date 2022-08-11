@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Card, CardMedia, Typography, Box, Tab, Tabs, CardActionArea, Backdrop, Divider, InputBase, IconButton} from '@material-ui/core';
 import {makeStyles, fade} from '@material-ui/core/styles';
 import LinkIcon from '@material-ui/icons/Link';

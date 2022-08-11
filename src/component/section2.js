@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Box, Typography,Avatar, Card, CardMedia, CardContent, Grid} from '@material-ui/core';
+import {Box, Typography, Grid} from '@material-ui/core';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 

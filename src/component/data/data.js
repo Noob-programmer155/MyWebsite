@@ -39,6 +39,17 @@ export const data = [
   },
   {
     id:5,
+    label:'react,java',
+    nama:'Web MPQ UMS',
+    descript:"this project is made from React js for frontend and java with spring framework for Backend, \
+      this project is made to make MPQ Organization famous, to get the source code, you can check it in \
+      my github account as 'web-mpq-ums-[frontend or backend]'",
+    link:'https://web-mpq-back.web.app/mpq-ums',
+    image: require('../../images/proj9.jpg').default,
+    index:[0,1,2],
+  },
+  {
+    id:6,
     label:'react',
     nama:'My Library Frontend',
     descript:"This project is build with React js, this \
@@ -48,7 +59,7 @@ export const data = [
     index:[0,2],
   },
   {
-    id:6,
+    id:7,
     label:'java',
     nama:'My Library Backend',
     descript:"This is Java project that build with Springboot, this \
@@ -58,7 +69,7 @@ export const data = [
     index:[0,1],
   },
   {
-    id:7,
+    id:8,
     label:'other',
     nama:'Bantu Tani',
     descript:"this project is from my bangkit team, in this project i build Rest API using Springboot and GCP services like: \
@@ -69,7 +80,7 @@ export const data = [
     index:[0,3],
   },
   {
-    id:8,
+    id:9,
     label:'react',
     nama:'Graph-X',
     descript:"this project is made from React js, this project is made to alternative library that provide chart in react js",

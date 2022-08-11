@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import gbr from '../images/ilya-pavlov-OqtafYT5kTw-unsplash.jpg';
 import {Card, CardMedia, Typography, Box} from '@material-ui/core';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -106,6 +106,7 @@ export default function Section3() {
   useEffect(()=>{
     ['#java1','#react1','#spring1','#mysql1','#oracle1','#css1','#javascript1','#gcp1'].map(a => {
       gsap.from(a, {scrollTrigger:{trigger:a,start:'top bottom',scrub:0}, width:0, ease:'power4'});
+      return;
     });
   },[])
   return(

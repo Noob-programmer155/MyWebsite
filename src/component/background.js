@@ -170,7 +170,7 @@ export default function Background() {
             </Box>
             <Typography style={{textAlign:'center', width:'100%', paddingTop:'40px'}}>
               <span id='subback1' className={style.title}><strong>Arrijal Amar Ma`ruf</strong><br/></span>
-              <span id='subback2' className={style.title1}>Junior Fullstack Java Developer</span>
+              <span id='subback2' className={style.title1}>Junior Software Developer</span>
             </Typography>
             <Box justifyContent='center' alignItems='center' display='flex'><Box borderTop={2}
               borderColor='#ff6600' className={style.box}/></Box>

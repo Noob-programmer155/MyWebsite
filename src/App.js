@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Background from './component/background';
 import Section1 from './component/section1';
 import Section2 from './component/section2';
