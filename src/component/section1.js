@@ -1,9 +1,10 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Box, Typography, CardMedia, Grid} from '@material-ui/core';
+import {Box, Typography, CardMedia, Grid, Button} from '@material-ui/core';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import dev from '../images/Dev.jpeg';
+import cv from '../file/CV.docx';
 import gbr1 from '../images/gambar1.jpg';
 import {data} from './data/data';
 
@@ -79,6 +80,7 @@ const useStyle = makeStyles((theme) => ({
     fontFamily:'Tahoma',
     marginLeft:'20px',
     color:'#b3b3b3',
+    verticalAlign:'top',
     fontSize:'4vw',
     [theme.breakpoints.up(500)]:{
       fontSize: '2.3vw',
@@ -179,28 +181,37 @@ export default function Section1() {
         <Box display='flex' flexWrap='wrap'>
           <CardMedia id='subsec11' image={dev} className={style.card1}/>
           <Box id='subsec12' className={style.secCard}>
-            <Typography style={{marginBottom:'15px',}}>
+            <Typography style={{marginBottom:'15px'}}>
               <span className={style.descCardMain}>General Information</span>
             </Typography>
             <Typography className={style.descCard}>
-              I`m Junior Fullstack Java Developer from Central Java Indonesia, I`m fast learner and very love to code
+              Assalamu`alaikum, I`m Junior Software Developer from Central Java Indonesia, I am motivated, adaptable, innovative, likes challenges and coding and are responsible person.
             </Typography>
-            <Box display='flex' style={{marginTop:'30px'}}>
-              <Typography className={style.descCard1}>
-                D.O.B <br/>
-                PHONE <br/>
-                ADDRESS
-              </Typography>
-              <Typography className={style.descCard1}>
-                : 19-09-2000 <br/>
-                : (+62) 089 8868 4379 <br/>
-                : Bolon 05/02, Colomadu, Karanganyar, Central Java, Indonesia
-              </Typography>
-            </Box>
-            <Box>
-              <Typography className={style.descCard1}>
-                E-MAIL <span style={{marginLeft:'22px'}}>: amrrrr572@gmail.com</span>
-              </Typography>
+            <Box style={{marginTop:'30px',marginLeft:'10px'}}>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className={style.descCard1}>D.O.B</td>
+                    <td className={style.descCard1}>:</td>
+                    <td className={style.descCard1}>19-09-2000</td>
+                  </tr>
+                  <tr>
+                    <td className={style.descCard1}>Phone</td>
+                    <td className={style.descCard1}>:</td>
+                    <td className={style.descCard1}>(+62) 089 8868 4379</td>
+                  </tr>
+                  <tr>
+                    <td className={style.descCard1}>Address</td>
+                    <td className={style.descCard1}>:</td>
+                    <td className={style.descCard1}>Bolon 05/02, Colomadu, Karanganyar, Central Java, Indonesia</td>
+                  </tr>
+                  <tr>
+                    <td className={style.descCard1}>E-Mail</td>
+                    <td className={style.descCard1}>:</td>
+                    <td className={style.descCard1}>amrrrr572@gmail.com</td>
+                  </tr>
+                </tbody>
+              </table>
             </Box>
           </Box>
         </Box>
@@ -215,6 +226,9 @@ export default function Section1() {
             <Typography className={style.descCard2}>
               "Give the best then you will get the best"
             </Typography>
+            <Box style={{width:'100%',display:'flex',justifyContent:'center'}}>
+              <Button type="a" variant='contained' color="primary" href={cv} download style={{margin:'10px 10px 0 0'}}>Download My Resume</Button>
+            </Box>
             <Box>
               <Typography display='flex' className={style.projTit}>My Project</Typography>
             </Box>
