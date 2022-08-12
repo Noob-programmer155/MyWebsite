@@ -64,7 +64,7 @@ const data = [
   {title:'Email',link:'mailto:amrrrr572@gmail.com',label:'amrrrr572@gmail.com',icon:<EmailIcon/>},
   {title:'Facebook',link:'https://facebook.com/amar.rijal.336',label:'Amar Rijal',icon:<FacebookIcon/>},
   {title:'Github',link:'https://github.com/Noob-programmer155',label:'Noob-programmer155',icon:<GitHubIcon/>},
-  {title:'LinkedIn',link:'https://www.linkedin.com/in/arrijal-amar-735b71206',label:'Arrijal Amar',icon:<LinkedInIcon/>}
+  {title:'LinkedIn',link:'https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BREemPE%2FXSPy98cZbvwVHJw%3D%3D',label:'Arrijal Amar',icon:<LinkedInIcon/>}
 ]
 
 export default function Contact() {
