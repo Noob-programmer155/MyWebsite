@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import gbr from '../images/ilya-pavlov-OqtafYT5kTw-unsplash.jpg';
 import {Card, CardMedia, Typography, Box} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import gsap from 'gsap';
+import {useSelector} from 'react-redux';
+import { skill1, skill2 } from './redux/sourceRedux';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +50,10 @@ const useStyle = makeStyles((theme)=>({
       fontSize:'1.3vw',
     },
   },
+  skillperanimate:{
+    height:'inherit',
+    borderRadius:4,
+  }
 }))
 
 function ProgressBar(pr) {
@@ -65,7 +71,7 @@ function ProgressBar(pr) {
   return(
     <Box display='flex' alignItems='center' style={{width:'100%'}}>
       <Box style={{width:'80%', height:'10px',borderRadius:4, background:'#d9d9d9'}}>
-        <Box id={id} onChange={(a,b)=> setValues(b)} style={{width:`${value}%`,height:'inherit',borderRadius:4, background:`linear-gradient(to left, ${color1[color1w]}, ${color2[color2w]})`}}/>
+        <Box id={id} onChange={(a,b)=> setValues(b)} style={{width:`${value}%` ,background:`linear-gradient(to left, ${color1[color1w]}, ${color2[color2w]})`}} className={style.skillperanimate}/>
       </Box>
       <Typography className={style.progDesc}>
         {`${Math.round(values)} %`}
@@ -103,34 +109,45 @@ function Progress(props) {
 
 export default function Section3() {
   var style = useStyle();
-  useEffect(()=>{
-    ['#java1','#react1','#spring1','#mysql1','#oracle1','#css1','#javascript1','#gcp1'].map(a => {
-      gsap.from(a, {scrollTrigger:{trigger:a,start:'top bottom',scrub:0}, width:0, ease:'power4'});
-      return;
+  var sk1 = useSelector(skill1);
+  var sk2 = useSelector(skill2);
+  useEffect(() => {
+    var jh = gsap.timeline({
+      scrollTrigger:{
+        trigger:'.skillContain',
+        start:'center bottom',
+        scrub:1
+      }
     });
+    jh.from('.skillContain',{opacity:0, x:-100, ease:'power2'});
+    jh.from('.skillContain2',{opacity:0, x:100, ease:'power2'});
   },[])
   return(
     <Card id='skill12' square>
       <CardMedia image={gbr}>
         <Box className={style.card}>
-          <Typography className={style.title}>
+          <Typography className={'skills '+style.title}>
             My Skills
           </Typography>
           <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap' style={{marginTop:'30px'}}>
             <Box alignItems='flex-start' justifyContent='center' display='flex' style={{width:'50%', minWidth:'300px'}}>
-              <Box style={{width:'90%', minWidth:'300px'}}>
-                <Progress id='java1' value={95} title='Java'/>
-                <Progress id='react1' value={85} title='React Js'/>
-                <Progress id='spring1' value={70} title='Spring Framework(Springboot, Spring Cloud, etc)'/>
-                <Progress id='mysql1' value={90} title='MySql'/>
+              <Box className='skillContain' style={{width:'90%', minWidth:'300px'}}>
+                {
+                  (sk1)?
+                  sk1.map(item => (
+                    <Progress id={item.id} value={item.value} title={item.name}/>
+                  )):null
+                }
               </Box>
             </Box>
             <Box alignItems='flex-start' justifyContent='center' display='flex' style={{width:'50%', minWidth:'300px'}}>
-              <Box style={{width:'90%', minWidth:'300px'}}>
-                <Progress id='css1' value={90} title='CSS'/>
-                <Progress id='javascript1' value={90} title='Javascript'/>
-                <Progress id='gcp1' value={70} title='Cloud Computing'/>
-                <Progress id='oracle1' value={90} title='Oracle'/>
+              <Box className='skillContain2' style={{width:'90%', minWidth:'300px'}}>
+                {
+                  (sk2)?
+                  sk2.map(item => (
+                    <Progress id={item.id} value={item.value} title={item.name}/>
+                  )):null
+                }
               </Box>
             </Box>
           </Box>

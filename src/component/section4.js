@@ -6,7 +6,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ClipboardJS from "clipboard";
-import {data} from './data/data';
+import { useSelector } from 'react-redux';
+import { project } from './redux/sourceRedux';
 
 new ClipboardJS(".copy");
 gsap.registerPlugin(ScrollTrigger);
@@ -144,8 +145,10 @@ function controller(index) {
 
 export default function Section4() {
   var style = useStyle();
+  const proj = useSelector(project);
   const[tab, setTab] = useState(0);
   const[open, setOpen] = useState(0);
+  const head = "https://storage.googleapis.com/web-private-amr-321/images/";
 
   const handleTab = (val, newVal) => {
     setTab(newVal);
@@ -177,11 +180,11 @@ export default function Section4() {
               <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'100%'}}>
                 <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'90%', minWidth:'140px'}}>
                 {
-                  data.filter(e => e.index.includes(c)).map((item,i) => (
+                  proj.filter(e => e.index.includes(c)).map((item,i) => (
                     <Box key={i} style={{margin: '10px'}}>
                       <CardActionArea className={style.readHover} onClick={v => {setOpen(item.id);}}>
                         <CardMedia
-                          image={item.image}
+                          image={head+item.image}
                           className={style.cardImg}>
                             <Box justifyContent='center' alignItems='center' className={style.readBox}>
                               <Typography className={style.read}>
@@ -201,13 +204,13 @@ export default function Section4() {
         <Backdrop className={style.backdrop} open={Boolean(open)}>
           <Box>
             <Box display='flex' border={6} borderColor='#bfbfbf' style={{background:'#ffff', width:'90vw', height:'45vh', minWidth:'280px', maxWidth:'600px'}}>
-              <CardMedia image={(open)? data[parseInt(open-1)].image:null} style={{minWidth:'30%', height:'inherit'}}/>
+              <CardMedia image={(open)? head+proj[parseInt(open-1)].image:null} style={{minWidth:'30%', height:'inherit'}}/>
               <Box style={{marginLeft:'5px'}}>
                 <Typography className={style.readMainTitle}>
-                  {(open)? data[parseInt(open-1)].nama:null}
+                  {(open)? proj[parseInt(open-1)].nama:null}
                 </Typography>
                 <Typography className={style.readMain}>
-                  {(open)? data[parseInt(open-1)].descript:null}
+                  {(open)? proj[parseInt(open-1)].descript:null}
                 </Typography>
                 <Card className='copy' style={{display:'flex',marginRight:'15px', marginLeft:'15px'}} data-clipboard-action="copy" data-clipboard-target="#linkProj">
                   <Box display='flex' alignItems='center' style={{padding:'4px', paddingRight:'6px', background:'#f2f2f2'}}>
@@ -217,7 +220,7 @@ export default function Section4() {
                   <InputBase
                     id='linkProj'
                     style={{width:'100%', marginLeft:'5px'}}
-                    value={(open)? data[parseInt(open-1)].link:null}
+                    value={(open)? proj[parseInt(open-1)].link:null}
                    />
                 </Card>
               </Box>

@@ -3,6 +3,9 @@ import {CardMedia, Box, Avatar, Typography, IconButton} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import { useDispatch } from 'react-redux';
+import { setProject, setExperience, setEducation, setSkill1, setSkill2} from './redux/sourceRedux';
+import axios from 'axios';
 import HomeIcon from '@material-ui/icons/Home';
 import FaceIcon from '@material-ui/icons/Face';
 import SchoolIcon from '@material-ui/icons/School';
@@ -134,12 +137,23 @@ const useStyle = makeStyles((theme)=>({
 
 export default function Background() {
   var style = useStyle();
+  const dispatch = useDispatch();
   const[open, setOpen]=React.useState();
   React.useEffect(()=>{
     gsap.from('#mainback',{opacity: 0, y:100, ease: "power4", duration:1});
     gsap.from('#subback1',{opacity: 0, x:100, delay:1, ease: "power4", duration:1});
     gsap.from('#subback2',{opacity: 0, x:-100, delay:1.2, ease: "power4", duration:1});
     gsap.from('#subback3',{opacity: 0, y:-100, delay:1.3, ease: "power4", duration:1});
+    axios.get("https://storage.googleapis.com/web-private-amr-321/data.json").
+      then(item => {
+        if(item.data) {
+          dispatch(setProject(item.data.data));
+          dispatch(setExperience(item.data.experience));
+          dispatch(setEducation(item.data.education));
+          dispatch(setSkill1(item.data['skill-1']));
+          dispatch(setSkill2(item.data['skill-2']));
+        }
+      }).catch(err => console.error)
   },[])
   const arr = ['home12','about12','experience12','skill12','project12','contact12']
   const handlelink = (a) => {

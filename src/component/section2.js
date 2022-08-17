@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Box, Typography, Grid} from '@material-ui/core';
 import gsap from 'gsap';
+import { useSelector } from 'react-redux';
+import { experience, education } from './redux/sourceRedux';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -142,6 +144,8 @@ function ProgressCircle(props) {
 
 export default function Section2() {
   var style = useStyle();
+  const exp = useSelector(experience);
+  const edu = useSelector(education);
   useEffect(()=>{
     var jh = gsap.timeline({
       scrollTrigger:{
@@ -150,23 +154,32 @@ export default function Section2() {
         scrub:1
       }
     });
-    jh.from('.mainsec',{opacity:0, y:100, ease:'power4'});
-    jh.from('.subsec',{opacity:0, x:-100, ease:'power4'});
-    jh.from('.subsec2',{opacity:0, x:100, ease:'power4'});
+    jh.from('.mainsec',{opacity:0, x:-100, ease:'power4',duration: .2});
+    jh.from('.maintwo',{opacity:0, x:100, ease:'power4',duration: .2});
   },[])
   return(
     <Box id='experience12' className={style.root}>
-      <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap' style={{width:'50%', minWidth:'300px'}}>
-        <Typography className={'mainsec '+style.title}>
+      <Box className='mainsec' justifyContent='center' alignItems='center' display='flex' flexWrap='wrap' style={{width:'50%', minWidth:'300px'}}>
+        <Typography className={style.title}>
           Experience
         </Typography>
-        <ProgressCircle className='subsec' reverse={false} desc='No current Experience'/>
+        {
+          (exp.length > 0)?
+          exp.map(item => (
+            <ProgressCircle className='subsec' reverse={false} position={item.position} desc={item.description} tahun={item.year}/>
+          )):<ProgressCircle className='subsec' reverse={false} desc='No current Experience'/>
+        }
       </Box>
-      <Box style={{width:'50%',minWidth:'300px'}}>
-        <Typography className={'mainsec '+style.title}>
+      <Box className='maintwo' style={{width:'50%',minWidth:'300px'}}>
+        <Typography className={style.title}>
           Education
         </Typography>
-        <ProgressCircle className='subsec' reverse={false} desc='Study in University of Muhammadiyah Surakarta' tahun='2019 - Now' faculty='faculty of informatics engineering'/>
+        {
+          (edu.length > 0)?
+          edu.map(item => (
+            <ProgressCircle className='subsec2' reverse={false} desc={item.description} tahun={item.year} faculty={item.faculty}/>
+          )):<ProgressCircle className='subsec2' reverse={false} desc='No current Education'/>
+        }
       </Box>
     </Box>
   );

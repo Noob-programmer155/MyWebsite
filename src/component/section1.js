@@ -4,9 +4,9 @@ import {Box, Typography, CardMedia, Grid, Button} from '@material-ui/core';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import dev from '../images/Dev.jpeg';
-import cv from '../file/CV.docx';
 import gbr1 from '../images/gambar1.jpg';
-import {data} from './data/data';
+import {useSelector} from 'react-redux';
+import {project} from './redux/sourceRedux';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -149,6 +149,7 @@ const useStyle = makeStyles((theme) => ({
 
 export default function Section1() {
   var style = useStyle();
+  const proj = useSelector(project);
   React.useEffect(()=>{
     gsap.from("#about12",{scrollTrigger:{
       trigger:'#about12',
@@ -227,7 +228,7 @@ export default function Section1() {
               "Give the best then you will get the best"
             </Typography>
             <Box style={{width:'100%',display:'flex',justifyContent:'center'}}>
-              <Button type="a" variant='contained' color="primary" href={cv} download style={{margin:'10px 10px 0 0'}}>Download My Resume</Button>
+              <Button type="a" variant='contained' color="primary" href="https://storage.googleapis.com/web-private-amr-321/cv/CV.docx" download style={{margin:'10px 10px 0 0'}}>Download My Resume</Button>
             </Box>
             <Box>
               <Typography display='flex' className={style.projTit}>My Project</Typography>
@@ -236,7 +237,7 @@ export default function Section1() {
               <Grid container>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    {data.filter(i => i.label === 'java').length}
+                    {proj.filter(i => i.label === 'java').length}
                   </Typography>
                   <Typography className={style.projTitSecDes}>
                     Java Projects
@@ -244,7 +245,7 @@ export default function Section1() {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    {data.filter(i => i.label === 'react').length}
+                    {proj.filter(i => i.label === 'react').length}
                   </Typography>
                   <Typography className={style.projTitSecDes}>
                     React Projects
@@ -252,7 +253,7 @@ export default function Section1() {
                 </Grid>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    {data.filter(i => i.label !== 'react' && i.label !== 'java').length}
+                    {proj.filter(i => i.label !== 'react' && i.label !== 'java').length}
                   </Typography>
                   <Typography className={style.projTitSecDes}>
                     Other Projects
