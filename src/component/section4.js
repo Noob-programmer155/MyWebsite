@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Card, CardMedia, Typography, Box, Tab, Tabs, CardActionArea, Backdrop, Divider, InputBase, IconButton} from '@material-ui/core';
+import {Card, CardMedia, Typography, Box, Tab, Tabs, CardActionArea, Backdrop, Divider, IconButton, Button} from '@material-ui/core';
 import {makeStyles, fade} from '@material-ui/core/styles';
 import LinkIcon from '@material-ui/icons/Link';
 import CloseIcon from '@material-ui/icons/Close';
@@ -8,7 +8,6 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import ClipboardJS from "clipboard";
 import { useSelector } from 'react-redux';
 import { project } from './redux/sourceRedux';
-import { Button } from 'react-scroll';
 
 new ClipboardJS(".copy");
 gsap.registerPlugin(ScrollTrigger);
@@ -160,13 +159,13 @@ function controller(index) {
 export default function Section4() {
   var style = useStyle();
   const proj = useSelector(project);
-  const[labels,setLabels] = useState<Array<String>>([]);
+  const[labels,setLabels] = useState([]);
   const[tab, setTab] = useState(0);
   const[open, setOpen] = useState(0);
   const head = "https://storage.googleapis.com/web-private-amr-321/images/";
 
   useEffect(() => {
-    setLabels(['All',...new Set(proj.map(e => e.label))])
+    setLabels(['All',...new Set(proj.map(e => e.label).sort())])
   },[])
 
   const handleTab = (val, newVal) => {
@@ -187,7 +186,7 @@ export default function Section4() {
             textColor="primary"
            >
             {
-              labels.sort().map(i,index => (
+              labels.map((i,index) => (
                 <Tab label={i} {...controller(index)}/>
               ))
             }
@@ -195,7 +194,7 @@ export default function Section4() {
         </Box>
         <Divider variant='middle' style={{width:'100%'}}/>
         {
-          labels.map(c,index => (
+          labels.map((c,index) => (
             <TabPanel value={tab} index={index}>
               <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'100%'}}>
                 <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'90%', minWidth:'140px'}}>
@@ -239,10 +238,10 @@ export default function Section4() {
                   <Box display='flex' alignItems='center' style={{padding:'4px', paddingRight:'6px', background:'#f2f2f2'}}>
                     <LinkIcon fontSize='medium'/>
                   </Box>
-                  <Divider orientation='vertical'  flexItem/>
+                  <Divider orientation='vertical' flexItem/>
                   <Button
                     id='linkProj'
-                    href={(open)? proj[parseInt(open-1)].link:'#'}
+                    href={(open)? proj[parseInt(open-1)].link:null}
                     target='blank'
                     style={{width:'100%', marginLeft:'5px'}}
                    >to Repo</Button>
