@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card, CardMedia, Typography, Box, Tab, Tabs, CardActionArea, Backdrop, Divider, InputBase, IconButton} from '@material-ui/core';
 import {makeStyles, fade} from '@material-ui/core/styles';
 import LinkIcon from '@material-ui/icons/Link';
@@ -8,6 +8,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import ClipboardJS from "clipboard";
 import { useSelector } from 'react-redux';
 import { project } from './redux/sourceRedux';
+import { Button } from 'react-scroll';
 
 new ClipboardJS(".copy");
 gsap.registerPlugin(ScrollTrigger);
@@ -89,12 +90,25 @@ const useStyle = makeStyles((th)=> ({
     fontSize:'4vw',
     fontWeight:700,
     color:'#00cc99',
-    marginBottom:'20px',
+    marginBottom:'0px',
     [th.breakpoints.up(500)]:{
       fontSize:'2.5vw',
     },
     [th.breakpoints.up(1000)]:{
       fontSize:'1.5vw',
+    },
+  },
+  readMainSecondary:{
+    fontFamily:'Segoe UI',
+    fontSize:'2.5vw',
+    fontWeight:500,
+    color:'#5ed1b4',
+    marginBottom:'20px',
+    [th.breakpoints.up(500)]:{
+      fontSize:'1.5vw',
+    },
+    [th.breakpoints.up(1000)]:{
+      fontSize:'1.2vw',
     },
   },
   readMain:{
@@ -146,9 +160,14 @@ function controller(index) {
 export default function Section4() {
   var style = useStyle();
   const proj = useSelector(project);
+  const[labels,setLabels] = useState<Array<String>>([]);
   const[tab, setTab] = useState(0);
   const[open, setOpen] = useState(0);
   const head = "https://storage.googleapis.com/web-private-amr-321/images/";
+
+  useEffect(() => {
+    setLabels(['All',...new Set(proj.map(e => e.label))])
+  },[])
 
   const handleTab = (val, newVal) => {
     setTab(newVal);
@@ -167,20 +186,21 @@ export default function Section4() {
             indicatorColor="primary"
             textColor="primary"
            >
-            <Tab label='All' {...controller(0)}/>
-            <Tab label='Java' {...controller(1)}/>
-            <Tab label='React' {...controller(2)}/>
-            <Tab label='Other Projects' {...controller(3)}/>
+            {
+              labels.sort().map(i,index => (
+                <Tab label={i} {...controller(index)}/>
+              ))
+            }
           </Tabs>
         </Box>
         <Divider variant='middle' style={{width:'100%'}}/>
         {
-          [0,1,2,3].map(c => (
-            <TabPanel value={tab} index={c}>
+          labels.map(c,index => (
+            <TabPanel value={tab} index={index}>
               <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'100%'}}>
                 <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'90%', minWidth:'140px'}}>
                 {
-                  proj.filter(e => e.index.includes(c)).map((item,i) => (
+                  proj.filter(e => e.label === c).map((item,i) => (
                     <Box key={i} style={{margin: '10px'}}>
                       <CardActionArea className={style.readHover} onClick={v => {setOpen(item.id);}}>
                         <CardMedia
@@ -209,6 +229,9 @@ export default function Section4() {
                 <Typography className={style.readMainTitle}>
                   {(open)? proj[parseInt(open-1)].nama:null}
                 </Typography>
+                <Typography className={style.readMainSecondary}>
+                  {(open)? proj[parseInt(open-1)].label:null}
+                </Typography>
                 <Typography className={style.readMain}>
                   {(open)? proj[parseInt(open-1)].descript:null}
                 </Typography>
@@ -217,11 +240,12 @@ export default function Section4() {
                     <LinkIcon fontSize='medium'/>
                   </Box>
                   <Divider orientation='vertical'  flexItem/>
-                  <InputBase
+                  <Button
                     id='linkProj'
+                    href={(open)? proj[parseInt(open-1)].link:'#'}
+                    target='blank'
                     style={{width:'100%', marginLeft:'5px'}}
-                    value={(open)? proj[parseInt(open-1)].link:null}
-                   />
+                   >to Repo</Button>
                 </Card>
               </Box>
             </Box>

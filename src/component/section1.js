@@ -186,7 +186,7 @@ export default function Section1() {
               <span className={style.descCardMain}>General Information</span>
             </Typography>
             <Typography className={style.descCard}>
-              Assalamu`alaikum, I`m Junior Software Developer from Central Java Indonesia, I am motivated, adaptable, innovative, likes challenges and coding and are responsible person.
+              Assalamu`alaikum, I`m Junior Software Developer from Central Java Indonesia, I am motivated, adaptable, innovative, creative, likes challenges and coding and are responsible person.
             </Typography>
             <Box style={{marginTop:'30px',marginLeft:'10px'}}>
               <table>
@@ -204,7 +204,7 @@ export default function Section1() {
                   <tr>
                     <td className={style.descCard1}>Address</td>
                     <td className={style.descCard1}>:</td>
-                    <td className={style.descCard1}>Bolon 05/02, Colomadu, Karanganyar, Central Java, Indonesia</td>
+                    <td className={style.descCard1}>Central Java, Indonesia</td>
                   </tr>
                   <tr>
                     <td className={style.descCard1}>E-Mail</td>
@@ -237,26 +237,7 @@ export default function Section1() {
               <Grid container>
                 <Grid item xs={4}>
                   <Typography className={style.projTitSec}>
-                    {proj.filter(i => i.label === 'java').length}
-                  </Typography>
-                  <Typography className={style.projTitSecDes}>
-                    Java Projects
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography className={style.projTitSec}>
-                    {proj.filter(i => i.label === 'react').length}
-                  </Typography>
-                  <Typography className={style.projTitSecDes}>
-                    React Projects
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Typography className={style.projTitSec}>
-                    {proj.filter(i => i.label !== 'react' && i.label !== 'java').length}
-                  </Typography>
-                  <Typography className={style.projTitSecDes}>
-                    Other Projects
+                    {proj.length}
                   </Typography>
                 </Grid>
               </Grid>
