@@ -89,7 +89,7 @@ const useStyle = makeStyles((th)=> ({
     fontSize:'4vw',
     fontWeight:700,
     color:'#00cc99',
-    marginBottom:'0px',
+    marginBottom:'20px',
     [th.breakpoints.up(500)]:{
       fontSize:'2.5vw',
     },
@@ -99,15 +99,16 @@ const useStyle = makeStyles((th)=> ({
   },
   readMainSecondary:{
     fontFamily:'Segoe UI',
-    fontSize:'2.5vw',
+    fontSize:'2vw',
+    fontStyle:'italic',
     fontWeight:500,
     color:'#5ed1b4',
-    marginBottom:'20px',
+    marginBottom:'0px',
     [th.breakpoints.up(500)]:{
-      fontSize:'1.5vw',
+      fontSize:'1vw',
     },
     [th.breakpoints.up(1000)]:{
-      fontSize:'1.2vw',
+      fontSize:'.8vw',
     },
   },
   readMain:{
@@ -166,7 +167,7 @@ export default function Section4() {
 
   useEffect(() => {
     setLabels(['All',...new Set(proj.map(e => e.label).sort())])
-  },[])
+  },[proj])
 
   const handleTab = (val, newVal) => {
     setTab(newVal);
@@ -199,7 +200,7 @@ export default function Section4() {
               <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'100%'}}>
                 <Box justifyContent='center' alignItems='flex-start' display='flex' flexWrap='wrap' style={{width:'90%', minWidth:'140px'}}>
                 {
-                  proj.filter(e => e.label === c).map((item,i) => (
+                  proj.filter(e => e.label === c || index === 0).map((item,i) => (
                     <Box key={i} style={{margin: '10px'}}>
                       <CardActionArea className={style.readHover} onClick={v => {setOpen(item.id);}}>
                         <CardMedia
@@ -222,30 +223,26 @@ export default function Section4() {
         }
         <Backdrop className={style.backdrop} open={Boolean(open)}>
           <Box>
-            <Box display='flex' border={6} borderColor='#bfbfbf' style={{background:'#ffff', width:'90vw', height:'45vh', minWidth:'280px', maxWidth:'600px'}}>
+            <Box display='flex' border={6} borderColor='#bfbfbf' style={{background:'#ffff', width:'90vw', height:'45vh', minWidth:'280px', maxWidth:'700px'}}>
               <CardMedia image={(open)? head+proj[parseInt(open-1)].image:null} style={{minWidth:'30%', height:'inherit'}}/>
               <Box style={{marginLeft:'5px'}}>
-                <Typography className={style.readMainTitle}>
-                  {(open)? proj[parseInt(open-1)].nama:null}
-                </Typography>
                 <Typography className={style.readMainSecondary}>
                   {(open)? proj[parseInt(open-1)].label:null}
+                </Typography>
+                <Typography className={style.readMainTitle}>
+                  {(open)? proj[parseInt(open-1)].nama:null}
                 </Typography>
                 <Typography className={style.readMain}>
                   {(open)? proj[parseInt(open-1)].descript:null}
                 </Typography>
-                <Card className='copy' style={{display:'flex',marginRight:'15px', marginLeft:'15px'}} data-clipboard-action="copy" data-clipboard-target="#linkProj">
-                  <Box display='flex' alignItems='center' style={{padding:'4px', paddingRight:'6px', background:'#f2f2f2'}}>
-                    <LinkIcon fontSize='medium'/>
-                  </Box>
-                  <Divider orientation='vertical' flexItem/>
-                  <Button
-                    id='linkProj'
-                    href={(open)? proj[parseInt(open-1)].link:null}
-                    target='blank'
-                    style={{width:'100%', marginLeft:'5px'}}
-                   >to Repo</Button>
-                </Card>
+                <Button
+                  color='primary'
+                  variant='contained'
+                  id='linkProj'
+                  href={(open)? proj[parseInt(open-1)].link:null}
+                  target='blank'
+                  style={{width:'100%',textDecoration:"none"}}
+                  >To Repo</Button>
               </Box>
             </Box>
             <Box justifyContent='center' display='flex'>

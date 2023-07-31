@@ -40,7 +40,6 @@ const useStyle = makeStyles((theme) => ({
     minWidth:'100%',
     height:'50vh',
     [theme.breakpoints.up(1000)]:{
-      minWidth:'32vw',
       height:'400px',
     },
   },
@@ -103,7 +102,7 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   proj:{
-    marginRight:'15px',
+    marginRight:'0px',
   },
   projTit:{
     marginTop:'50px',
@@ -121,6 +120,7 @@ const useStyle = makeStyles((theme) => ({
   },
   projTitSec:{
     fontFamily:'Gill Sans',
+    width:"100%",
     fontSize:'7vw',
     textAlign:'center',
     fontWeight:800,
@@ -178,73 +178,73 @@ export default function Section1() {
       <Typography id='about12' variant='h4' style={{width:'100%', textAlign:'center', marginTop:'200px'}}>
         <span className={style.titleSec}>About Me</span>
       </Typography>
-      <Box justifyContent='center' alignItems='center' display='flex' style={{maxWidth:'1000px', width:'90%', marginTop:'40px'}}>
-        <Box display='flex' flexWrap='wrap'>
-          <CardMedia id='subsec11' image={dev} className={style.card1}/>
-          <Box id='subsec12' className={style.secCard}>
-            <Typography style={{marginBottom:'15px'}}>
-              <span className={style.descCardMain}>General Information</span>
-            </Typography>
-            <Typography className={style.descCard}>
-              Assalamu`alaikum, I`m Junior Software Developer from Central Java Indonesia, I am motivated, adaptable, innovative, creative, likes challenges and coding and are responsible person.
-            </Typography>
-            <Box style={{marginTop:'30px',marginLeft:'10px'}}>
-              <table>
-                <tbody>
-                  <tr>
-                    <td className={style.descCard1}>D.O.B</td>
-                    <td className={style.descCard1}>:</td>
-                    <td className={style.descCard1}>19-09-2000</td>
-                  </tr>
-                  <tr>
-                    <td className={style.descCard1}>Phone</td>
-                    <td className={style.descCard1}>:</td>
-                    <td className={style.descCard1}>(+62) 089 8868 4379</td>
-                  </tr>
-                  <tr>
-                    <td className={style.descCard1}>Address</td>
-                    <td className={style.descCard1}>:</td>
-                    <td className={style.descCard1}>Central Java, Indonesia</td>
-                  </tr>
-                  <tr>
-                    <td className={style.descCard1}>E-Mail</td>
-                    <td className={style.descCard1}>:</td>
-                    <td className={style.descCard1}>amrrrr572@gmail.com</td>
-                  </tr>
-                </tbody>
-              </table>
+      <Grid container style={{maxWidth:'1000px', width:'100%', marginTop:'40px'}}>
+        <Grid item xs={6}>
+          <Box display='flex' flexWrap='wrap'>
+            <CardMedia id='subsec11' image={dev} className={style.card1}/>
+            <Box id='subsec12' className={style.secCard}>
+              <Typography style={{marginBottom:'15px'}}>
+                <span className={style.descCardMain}>General Information</span>
+              </Typography>
+              <Typography className={style.descCard}>
+                Assalamu`alaikum, I`m Junior Software Developer from Central Java Indonesia, I am motivated, adaptable, innovative, creative, likes challenges and coding and are responsible person.
+              </Typography>
+              <Box style={{marginTop:'30px',marginLeft:'10px'}}>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td className={style.descCard1}>D.O.B</td>
+                      <td className={style.descCard1}>:</td>
+                      <td className={style.descCard1}>19-09-2000</td>
+                    </tr>
+                    <tr>
+                      <td className={style.descCard1}>Phone</td>
+                      <td className={style.descCard1}>:</td>
+                      <td className={style.descCard1}>(+62) 089 8868 4379</td>
+                    </tr>
+                    <tr>
+                      <td className={style.descCard1}>Address</td>
+                      <td className={style.descCard1}>:</td>
+                      <td className={style.descCard1}>Central Java, Indonesia</td>
+                    </tr>
+                    <tr>
+                      <td className={style.descCard1}>E-Mail</td>
+                      <td className={style.descCard1}>:</td>
+                      <td className={style.descCard1}>amrrrr572@gmail.com</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </Box>
-      <Box justifyContent='center' alignItems='center' display='flex' style={{maxWidth:'1000px', width:'90%'}}>
-        <Box display='flex' flexDirection="row-reverse" flexWrap='wrap'>
-          <CardMedia id='subsec13' image={gbr1} className={style.card1}/>
-          <Box id='subsec14' className={style.secCard}>
-            <Typography style={{marginBottom:'40px',}}>
-              <span className={style.descCardMain}>Other Info</span>
-            </Typography>
-            <Typography className={style.descCard2}>
-              "Give the best then you will get the best"
-            </Typography>
-            <Box style={{width:'100%',display:'flex',justifyContent:'center'}}>
-              <Button type="a" variant='contained' color="primary" href="https://storage.googleapis.com/web-private-amr-321/cv/CV.docx" download style={{margin:'10px 10px 0 0'}}>Download My Resume</Button>
-            </Box>
-            <Box>
-              <Typography display='flex' className={style.projTit}>My Project</Typography>
-            </Box>
-            <Box display='flex' border={5} borderColor='#ff9900' className={style.proj}>
-              <Grid container>
-                <Grid item xs={4}>
+        </Grid>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={6}>
+          <Box display='flex' flexDirection="row-reverse" flexWrap='wrap'>
+            <CardMedia id='subsec13' image={gbr1} className={style.card1}/>
+            <Box id='subsec14' className={style.secCard}>
+              <Typography style={{marginBottom:'40px',}}>
+                <span className={style.descCardMain}>Other Info</span>
+              </Typography>
+              <Typography className={style.descCard2}>
+                "Give the best then you will get the best"
+              </Typography>
+              <Box style={{width:'100%',display:'flex',justifyContent:'center'}}>
+                <Button type="a" variant='contained' color="primary" href="https://storage.googleapis.com/web-private-amr-321/cv/CV.docx" download style={{margin:'10px 10px 0 0'}}>Download My Resume</Button>
+              </Box>
+              <Box>
+                <Typography display='flex' className={style.projTit}>My Project</Typography>
+              </Box>
+              <Box display='flex' border={5} borderColor='#ff9900' className={style.proj}>
                   <Typography className={style.projTitSec}>
                     {proj.length}
                   </Typography>
-                </Grid>
-              </Grid>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
