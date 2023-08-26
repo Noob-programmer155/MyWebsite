@@ -5,13 +5,14 @@ import App from './App';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import mainRedux from './component/redux/mainRedux';
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={mainRedux}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+    <BrowserRouter>
+      <Provider store={mainRedux}>
+        <App />
+      </Provider>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

@@ -16,6 +16,7 @@ import { scroller } from "react-scroll";
 import gsap from 'gsap';
 import gbr from '../images/Amar.jpg';
 import img from '../images/back.jpg';
+import data from '../source/data.json';
 
 const useStyle = makeStyles((theme)=>({
   root:{
@@ -144,16 +145,21 @@ export default function Background() {
     gsap.from('#subback1',{opacity: 0, x:100, delay:1, ease: "power4", duration:1});
     gsap.from('#subback2',{opacity: 0, x:-100, delay:1.2, ease: "power4", duration:1});
     gsap.from('#subback3',{opacity: 0, y:-100, delay:1.3, ease: "power4", duration:1});
-    axios.get("https://storage.googleapis.com/web-private-amr-321/data.json").
-      then(item => {
-        if(item.data) {
-          dispatch(setProject(item.data.data));
-          dispatch(setExperience(item.data.experience));
-          dispatch(setEducation(item.data.education));
-          dispatch(setSkill1(item.data['skill-1']));
-          dispatch(setSkill2(item.data['skill-2']));
-        }
-      }).catch(err => console.error)
+    dispatch(setProject(data.data));
+    dispatch(setExperience(data.experience));
+    dispatch(setEducation(data.education));
+    dispatch(setSkill1(data['skill-1']));
+    dispatch(setSkill2(data['skill-2']));
+    // axios.get("https://storage.googleapis.com/web-private-amr-321/data.json").
+    //   then(item => {
+    //     if(item.data) {
+    //       dispatch(setProject(item.data.data));
+    //       dispatch(setExperience(item.data.experience));
+    //       dispatch(setEducation(item.data.education));
+    //       dispatch(setSkill1(item.data['skill-1']));
+    //       dispatch(setSkill2(item.data['skill-2']));
+    //     }
+    //   }).catch(err => console.error)
   },[])
   const arr = ['home12','about12','experience12','skill12','project12','contact12']
   const handlelink = (a) => {
@@ -166,7 +172,7 @@ export default function Background() {
     <Box className={style.menuReplace} style={{height:(open)? '300px':0}}>
       {
         [<HomeIcon/>,<FaceIcon/>,<SchoolIcon/>,<BarChartIcon/>,<EventIcon/>,<ContactsIcon/>].map((a,i) => (
-            <Box>
+            <Box key={i}>
               <IconButton className={style.menuReplaceIcon} style={{visibility:(open)?'visible':'hidden',opacity:(open)?1:0,
                 transition:'opacity 0.4s',transitionDelay:(open)? '0.5s':'0s', transitionTimingFunction: 'easeOut'}}
                 onClick={c => handlelink(i)}>{a}</IconButton>
@@ -179,17 +185,17 @@ export default function Background() {
     <>
       <CardMedia id='home12' image={img} style={{height:'100vh'}}>
         <Box height='100vh' className={style.root}>
-            <Box id='mainback' justifyContent='center' alignItems='center' display='flex'>
+            <Box id='mainback' sx={{justifyContent:'center', alignItems:'center', display:'flex'}}>
               <Avatar alt="Arrijal Amar M" src={gbr} className={style.avatar}/>
             </Box>
             <Typography style={{textAlign:'center', width:'100%', paddingTop:'40px'}}>
               <span id='subback1' className={style.title}><strong>Arrijal Amar Ma`ruf</strong><br/></span>
               <span id='subback2' className={style.title1}>Junior Software Developer</span>
             </Typography>
-            <Box justifyContent='center' alignItems='center' display='flex'><Box borderTop={2}
+            <Box sx={{justifyContent:'center', alignItems:'center', display:'flex'}}><Box borderTop={2}
               borderColor='#ff6600' className={style.box}/></Box>
-            <Box id='subback3' justifyContent='center' alignItems='center' display='flex' style={{marginTop:'4vh'}}>
-              <Box justifyContent='center' alignItems='center' display='flex' borderRadius='0% 0% 20% 20%' flexWrap='wrap' style={{backgroundColor:'rgba(89, 89, 89, 0.3)'}}>
+            <Box id='subback3' sx={{justifyContent:'center', alignItems:'center', display:'flex',marginTop:'4vh'}}>
+              <Box sx={{justifyContent:'center', alignItems:'center', display:'flex',borderRadius:'0% 0% 20% 20%', flexWrap:'wrap', backgroundColor:'rgba(89, 89, 89, 0.3)'}}>
                 <Typography component='span' className={style.CareerGoal}>
                   Career Goal
                 </Typography>

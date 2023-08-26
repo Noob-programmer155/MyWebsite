@@ -72,11 +72,11 @@ export default function Contact() {
   return(
     <Paper id='contact12' square style={{background:'#00004d',paddingTop:'50px', marginTop:'50px'}}>
       <Box>
-        <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
+        <Box sx={{justifyContent:'center', alignItems:'center', display:'flex', flexWrap:'wrap'}}>
           {
             data.map((item,i) => (
-              <Box justifyContent='center' alignItems='center' display='flex' flexWrap='wrap'>
-                <IconButton className={style.root} component='a' rel='noreferrer' href={item.link}>{item.icon}</IconButton>
+              <Box key={i} sx={{justifyContent:'center', alignItems:'center', display:'flex', flexWrap:'wrap'}}>
+                <IconButton className={style.root} component='a' rel='noreferrer' href={item.link} target='_blank'>{item.icon}</IconButton>
                 <Typography className={style.main}>
                   {item.title}
                 </Typography>

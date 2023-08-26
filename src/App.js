@@ -5,17 +5,29 @@ import Section2 from './component/section2';
 import Section3 from './component/section3';
 import Section4 from './component/section4';
 import Contact from './component/contact';
+import ApplicationLetter from './component/lettereditor';
+import { Route, Routes } from 'react-router';
 
 function App() {
   return (
-    <>
-      <Background/>
-      <Section1/>
-      <Section2/>
-      <Section3/>
-      <Section4/>
-      <Contact/>
-    </>
+    <Routes>
+      <Route path='/' element={
+        <>
+          <Background/>
+          <Section1/>
+          <Section2/>
+          <Section3/>
+          <Section4/>
+          <Contact/>
+        </>
+      }>
+      </Route>
+      <Route 
+        // loader={({params}) => {params.data}}
+        // action={({params}) => {params.data}}
+        path='/application-letter/:data'
+        element={<ApplicationLetter/>}/>
+    </Routes>
   );
 }
 

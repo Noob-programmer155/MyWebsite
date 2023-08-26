@@ -115,12 +115,19 @@ export default function Section3() {
     var jh = gsap.timeline({
       scrollTrigger:{
         trigger:'.skillContain',
-        start:'center bottom',
+        start:'top bottom',
+        scrub:1
+      }
+    });
+    var jh1 = gsap.timeline({
+      scrollTrigger:{
+        trigger:'.skillContain2',
+        start:'top bottom',
         scrub:1
       }
     });
     jh.from('.skillContain',{opacity:0, x:-100, ease:'power2'});
-    jh.from('.skillContain2',{opacity:0, x:100, ease:'power2'});
+    jh1.from('.skillContain2',{opacity:0, x:100, ease:'power2'});
   },[])
   return(
     <Card id='skill12' square>
@@ -134,8 +141,8 @@ export default function Section3() {
               <Box className='skillContain' style={{width:'90%', minWidth:'300px'}}>
                 {
                   (sk1)?
-                  sk1.map(item => (
-                    <Progress id={item.id} value={item.value} title={item.name}/>
+                  sk1.map((item,i) => (
+                    <Progress key={i} id={item.id} value={item.value} title={item.name}/>
                   )):null
                 }
               </Box>
@@ -144,8 +151,8 @@ export default function Section3() {
               <Box className='skillContain2' style={{width:'90%', minWidth:'300px'}}>
                 {
                   (sk2)?
-                  sk2.map(item => (
-                    <Progress id={item.id} value={item.value} title={item.name}/>
+                  sk2.map((item,i) => (
+                    <Progress key={i} id={item.id} value={item.value} title={item.name}/>
                   )):null
                 }
               </Box>

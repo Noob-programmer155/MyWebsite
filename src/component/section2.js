@@ -165,8 +165,8 @@ export default function Section2() {
         </Typography>
         {
           (exp.length > 0)?
-          exp.map(item => (
-            <ProgressCircle className='subsec' reverse={false} position={item.position} desc={item.description} tahun={item.year}/>
+          exp.map((item,i) => (
+            <ProgressCircle key={i} className='subsec' reverse={false} position={item.position} desc={item.description} tahun={item.year}/>
           )):<ProgressCircle className='subsec' reverse={false} desc='No current Experience'/>
         }
       </Box>
@@ -176,8 +176,8 @@ export default function Section2() {
         </Typography>
         {
           (edu.length > 0)?
-          edu.map(item => (
-            <ProgressCircle className='subsec2' reverse={false} desc={item.description} tahun={item.year} faculty={item.faculty}/>
+          edu.map((item,i) => (
+            <ProgressCircle key={i} className='subsec2' reverse={false} desc={item.description} tahun={item.year} faculty={item.faculty}/>
           )):<ProgressCircle className='subsec2' reverse={false} desc='No current Education'/>
         }
       </Box>
