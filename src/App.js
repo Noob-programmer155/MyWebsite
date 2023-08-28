@@ -7,6 +7,7 @@ import Section4 from './component/section4';
 import Contact from './component/contact';
 import ApplicationLetter from './component/lettereditor';
 import { Route, Routes } from 'react-router';
+import Section5 from './component/section5';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Section2/>
           <Section3/>
           <Section4/>
+          <Section5/>
           <Contact/>
         </>
       }>

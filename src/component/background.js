@@ -17,6 +17,7 @@ import gsap from 'gsap';
 import gbr from '../images/Amar.jpg';
 import img from '../images/back.jpg';
 import data from '../source/data.json';
+import { BuildRounded } from '@material-ui/icons';
 
 const useStyle = makeStyles((theme)=>({
   root:{
@@ -124,14 +125,16 @@ const useStyle = makeStyles((theme)=>({
     top:'5vh',
     left:'80vw',
     background:'#a64dff',
-    transition:theme.transitions.create('height',{duration:'0.5s',easing:theme.transitions.easing.easeOut}),
     [theme.breakpoints.up(800)]:{
       left:'90vw',
     },
   },
+  menuReplaceContainer:{
+    position:'relative',
+    transition:theme.transitions.create('all',{duration:'0.5s',easing:theme.transitions.easing.easeOut})
+  },
   menuReplaceIcon:{
     color:'#ffff',
-    position:'relative',
     width:theme.spacing(6),
   },
 }))
@@ -140,6 +143,7 @@ export default function Background() {
   var style = useStyle();
   const dispatch = useDispatch();
   const[open, setOpen]=React.useState();
+  const[menuHeight,setMenuHeight]=React.useState(['inherit','inherit']);
   React.useEffect(()=>{
     gsap.from('#mainback',{opacity: 0, y:100, ease: "power4", duration:1});
     gsap.from('#subback1',{opacity: 0, x:100, delay:1, ease: "power4", duration:1});
@@ -160,8 +164,11 @@ export default function Background() {
     //       dispatch(setSkill2(item.data['skill-2']));
     //     }
     //   }).catch(err => console.error)
+    const menu = document.getElementById('box-menu')
+    const height = menu.clientHeight
+    setMenuHeight([`${height}px`,'0px'])
   },[])
-  const arr = ['home12','about12','experience12','skill12','project12','contact12']
+  const arr = ['home12','about12','experience12','skill12','project12','tools12','contact12']
   const handlelink = (a) => {
     scroller.scrollTo(arr[a],{
       duration:1000,
@@ -169,16 +176,18 @@ export default function Background() {
     })
   }
   const menuBox = (
-    <Box className={style.menuReplace} style={{height:(open)? '300px':0}}>
-      {
-        [<HomeIcon/>,<FaceIcon/>,<SchoolIcon/>,<BarChartIcon/>,<EventIcon/>,<ContactsIcon/>].map((a,i) => (
-            <Box key={i}>
-              <IconButton className={style.menuReplaceIcon} style={{visibility:(open)?'visible':'hidden',opacity:(open)?1:0,
-                transition:'opacity 0.4s',transitionDelay:(open)? '0.5s':'0s', transitionTimingFunction: 'easeOut'}}
-                onClick={c => handlelink(i)}>{a}</IconButton>
-            </Box>
-        ))
-      }
+    <Box className={style.menuReplace}>
+      <Box id='box-menu' className={style.menuReplaceContainer} style={{height:(open)?menuHeight[0]:menuHeight[1],overflow:'hidden'}}>
+        {
+          [<HomeIcon/>,<FaceIcon/>,<SchoolIcon/>,<BarChartIcon/>,<EventIcon/>,<BuildRounded/>,<ContactsIcon/>].map((a,i) => (
+              <Box key={i}>
+                <IconButton className={style.menuReplaceIcon} style={{opacity:(open)?1:0,
+                  transition:'all 0.4s',transitionDelay:(open)? '0.5s':'0s', transitionTimingFunction: 'easeOut'}}
+                  onClick={c => handlelink(i)}>{a}</IconButton>
+              </Box>
+          ))
+        }
+      </Box>
     </Box>
   )
   return(

@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {CardMedia, Typography, Box, Tab, Tabs, CardActionArea, Divider, IconButton, Button, Dialog} from '@material-ui/core';
 import {makeStyles, alpha} from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useSelector } from 'react-redux';
 import { project } from './redux/sourceRedux';
 
